@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FHEMTNI? – الإنجليزية واضحة لكل طالب تونسي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:       #1E3A8A;
+  --blue-mid:   #2952C8;
+  --blue-light: #EFF4FF;
+  --blue-dark:  #0D1F5C;
+  --yellow:     #FACC15;
+  --yellow-dk:  #D4A000;
+  --green:      #22C55E;
+  --green-dk:   #15803D;
+  --red:        #EF4444;
+  --purple:     #8B5CF6;
+  --white:      #FFFFFF;
+  --bg:         #F5F7FF;
+  --gray:       #6B7280;
+  --dark:       #0D1B4B;
+  --card-border:rgba(30,58,138,.08);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; direction:rtl; }
+body {
+  font-family:'Tajawal', sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  overflow-x:hidden;
+  font-size:16px;
+  line-height:1.7;
+}
+
+/* ── SCROLL PROGRESS BAR ── */
+#progress-bar {
+  position:fixed; top:0; right:0; left:0; height:3px; z-index:999;
+  background:linear-gradient(90deg,var(--yellow),var(--green));
+  transform-origin:right center;
+  transform:scaleX(0);
+  transition:transform .1s;
+}
+
+/* ── NAVBAR ── */
+nav {
+  position:fixed; top:3px; right:0; left:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.9rem 5%;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--card-border);
+}
+.nav-logo {
+  font-family:'Cairo', sans-serif; font-weight:900; font-size:1.5rem;
+  color:var(--blue); letter-spacing:-1px; text-decoration:none;
+  display:flex; align-items:center; gap:4px;
+}
+.nav-logo .q { color:var(--yellow-dk); }
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a {
+  text-decoration:none; color:var(--dark); font-weight:600; font-size:.95rem;
+  transition:color .2s; position:relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-3px; right:0; left:0;
+  height:2px; background:var(--blue); border-radius:2px;
+  transform:scaleX(0); transform-origin:right; transition:transform .2s;
+}
+.nav-links a:hover::after { transform:scaleX(1); }
+.nav-links a:hover { color:var(--blue); }
+.nav-right { display:flex; align-items:center; gap:1rem; }
+.nav-cta {
+  background:var(--blue); color:#fff; border:none; border-radius:100px;
+  padding:.6rem 1.5rem; font-family:'Tajawal',sans-serif; font-size:.9rem; font-weight:700;
+  cursor:pointer; transition:background .2s, transform .15s;
+  white-space:nowrap;
+}
+.nav-cta:hover { background:var(--blue-mid); transform:translateY(-1px); }
+.hamburger {
+  display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px;
+}
+.hamburger span { display:block; width:24px; height:2px; background:var(--dark); border-radius:2px; transition:.3s; }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh; padding-top:80px;
+  display:grid; grid-template-columns:1.1fr 1fr;
+  align-items:center; gap:4rem; padding-right:5%; padding-left:5%;
+  position:relative; overflow:hidden;
+}
+.hero-bg-shapes {
+  position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;
+}
+.shape {
+  position:absolute; border-radius:50%;
+  filter:blur(60px); opacity:.35;
+}
+.shape-1 { width:500px; height:500px; background:#DBEAFE; top:-100px; left:-100px; }
+.shape-2 { width:400px; height:400px; background:#FEF9C3; bottom:-50px; right:5%; animation:shapeDrift 8s ease-in-out infinite alternate; }
+.shape-3 { width:250px; height:250px; background:#DCFCE7; top:40%; left:30%; }
+.dot-grid {
+  position:absolute; inset:0;
+  background-image:radial-gradient(circle, rgba(30,58,138,.12) 1px, transparent 1px);
+  background-size:28px 28px;
+  mask-image:radial-gradient(ellipse 60% 70% at 30% 50%, black 0%, transparent 80%);
+}
+.hero-content { position:relative; z-index:1; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:var(--yellow); color:var(--dark);
+  border-radius:100px; padding:.35rem 1.1rem;
+  font-size:.82rem; font-weight:800; margin-bottom:1.5rem;
+  animation:fadeUp .5s ease both;
+  box-shadow:0 4px 16px rgba(250,204,21,.3);
+}
+.hero-headline {
+  font-family:'Cairo', sans-serif; font-weight:900;
+  font-size:clamp(2rem, 4.5vw, 3.8rem); line-height:1.15;
+  color:var(--dark); margin-bottom:1.2rem;
+  animation:fadeUp .6s .1s ease both;
+}
+.hero-headline .line-accent { color:var(--blue); }
+.hero-headline .underline-wrap {
+  position:relative; display:inline-block;
+}
+.hero-headline .underline-wrap::after {
+  content:''; position:absolute; bottom:4px; right:0; left:0;
+  height:10px; background:rgba(250,204,21,.5); z-index:-1; border-radius:3px;
+}
+.hero-sub {
+  font-size:1.1rem; line-height:1.8; color:#374151;
+  max-width:500px; margin-bottom:2rem;
+  animation:fadeUp .6s .2s ease both;
+}
+.hero-btns {
+  display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2.5rem;
+  animation:fadeUp .6s .3s ease both;
+}
+.btn-primary {
+  background:var(--blue); color:#fff; border:none; border-radius:100px;
+  padding:.9rem 2.2rem; font-family:'Tajawal',sans-serif; font-size:1rem; font-weight:700;
+  cursor:pointer; transition:transform .2s, box-shadow .2s;
+  box-shadow:0 6px 24px rgba(30,58,138,.35); display:flex; align-items:center; gap:.5rem;
+}
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 10px 32px rgba(30,58,138,.4); }
+.btn-ghost {
+  background:transparent; color:var(--blue); border:2px solid rgba(30,58,138,.25);
+  border-radius:100px; padding:.9rem 2.2rem;
+  font-family:'Tajawal',sans-serif; font-size:1rem; font-weight:700;
+  cursor:pointer; transition:.2s; display:flex; align-items:center; gap:.5rem;
+}
+.btn-ghost:hover { border-color:var(--blue); background:var(--blue-light); }
+.hero-trust {
+  display:flex; gap:1.5rem; flex-wrap:wrap;
+  animation:fadeUp .6s .4s ease both;
+}
+.trust-pill {
+  display:flex; align-items:center; gap:.4rem;
+  font-size:.82rem; font-weight:700; color:var(--gray);
+}
+.trust-pill span { font-size:1rem; }
+
+/* ── HERO VISUAL ── */
+.hero-visual {
+  position:relative; z-index:1; display:flex;
+  align-items:center; justify-content:center;
+  animation:fadeIn .8s .2s ease both;
+}
+.hero-card-wrap { position:relative; }
+.hero-main-card {
+  background:#fff; border-radius:2.5rem;
+  padding:2.5rem 3rem; text-align:center;
+  box-shadow:0 30px 80px rgba(30,58,138,.14), 0 4px 20px rgba(0,0,0,.05);
+  transform:rotate(-2deg);
+  position:relative;
+}
+.brand-display {
+  font-family:'Cairo',sans-serif; font-weight:900;
+  font-size:5rem; line-height:1; letter-spacing:-3px; color:var(--blue);
+}
+.brand-display .bq { color:var(--yellow-dk); animation:qWiggle 2.5s ease-in-out infinite; display:inline-block; }
+.brand-tagline { font-size:.85rem; color:var(--gray); font-weight:700; letter-spacing:1.5px; margin-top:.8rem; display:block; }
+/* Floating mini-cards */
+.mini-card {
+  position:absolute; background:#fff;
+  border-radius:1rem; padding:.6rem 1rem;
+  font-size:.82rem; font-weight:700; color:var(--dark);
+  box-shadow:0 6px 20px rgba(0,0,0,.1);
+  white-space:nowrap; display:flex; align-items:center; gap:.4rem;
+}
+.mc1 { top:-18px; right:-30px; background:var(--green); color:#fff; animation:mcFloat1 3s ease-in-out infinite; }
+.mc2 { bottom:10px; right:-50px; background:var(--yellow); animation:mcFloat2 3.5s ease-in-out infinite; }
+.mc3 { top:20px; left:-50px; background:var(--blue); color:#fff; animation:mcFloat1 4s ease-in-out infinite; }
+.mc4 { bottom:-15px; left:-20px; background:#fff; border:2px solid var(--blue-light); animation:mcFloat2 2.8s ease-in-out infinite; }
+
+/* ── STATS ROW ── */
+.stats-row {
+  display:grid; grid-template-columns:repeat(4, 1fr);
+  background:var(--blue); gap:0;
+}
+.stat-box {
+  padding:2rem 1.5rem; text-align:center;
+  border-left:1px solid rgba(255,255,255,.1);
+  transition:background .2s;
+}
+.stat-box:last-child { border-left:none; }
+.stat-box:hover { background:rgba(255,255,255,.05); }
+.stat-number {
+  font-family:'Cairo',sans-serif; font-size:2.8rem; font-weight:900;
+  color:var(--yellow); line-height:1; display:block;
+}
+.stat-label { font-size:.88rem; color:rgba(255,255,255,.75); font-weight:600; margin-top:.3rem; }
+
+/* ── SECTION BASE ── */
+section { padding:5.5rem 5%; }
+.section-tag {
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-size:.78rem; font-weight:800; letter-spacing:1.5px;
+  background:var(--blue-light); color:var(--blue);
+  border-radius:100px; padding:.35rem 1rem; margin-bottom:1rem;
+}
+.section-title {
+  font-family:'Cairo',sans-serif; font-weight:900;
+  font-size:clamp(1.8rem, 3.5vw, 2.8rem); line-height:1.2;
+  color:var(--dark); margin-bottom:.8rem;
+}
+.section-sub { font-size:1rem; color:var(--gray); max-width:540px; line-height:1.8; }
+.section-header { margin-bottom:3.5rem; }
+.section-header.center { text-align:center; }
+.section-header.center .section-sub { margin:0 auto; }
+
+/* ── PAIN SECTION (for parents) ── */
+.pain-section { background:#fff; }
+.pain-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+.pain-list { display:flex; flex-direction:column; gap:1rem; margin-top:1.5rem; }
+.pain-item {
+  display:flex; align-items:flex-start; gap:1rem;
+  background:var(--bg); border-radius:1.2rem; padding:1.2rem 1.4rem;
+  border-right:4px solid transparent; transition:.25s;
+}
+.pain-item.problem { border-right-color:var(--red); }
+.pain-item.solution { border-right-color:var(--green); background:#F0FDF4; }
+.pain-icon { font-size:1.6rem; flex-shrink:0; margin-top:.1rem; }
+.pain-text strong { font-weight:800; font-size:.95rem; display:block; margin-bottom:.2rem; }
+.pain-text p { font-size:.85rem; color:var(--gray); }
+.pain-visual {
+  background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);
+  border-radius:2rem; padding:2.5rem; color:#fff; position:relative; overflow:hidden;
+}
+.pain-visual::before {
+  content:'؟'; position:absolute; left:-20px; top:-30px;
+  font-family:'Cairo',sans-serif; font-size:15rem; font-weight:900;
+  color:rgba(255,255,255,.04); line-height:1;
+}
+.journey-steps { display:flex; flex-direction:column; gap:1rem; position:relative; z-index:1; }
+.journey-step {
+  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
+  border-radius:1rem; padding:1rem 1.2rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.journey-step.active { background:rgba(250,204,21,.15); border-color:rgba(250,204,21,.4); }
+.step-icon { font-size:1.5rem; }
+.step-label { font-size:.9rem; font-weight:700; }
+.step-sub { font-size:.78rem; color:rgba(255,255,255,.6); }
+.journey-arrow { text-align:center; color:rgba(255,255,255,.3); font-size:1.2rem; margin:-4px 0; }
+
+/* ── PATH SECTION ── */
+.path-section { background:var(--bg); }
+.paths-container { display:flex; flex-direction:column; gap:1.2rem; }
+.path-row {
+  display:grid; grid-template-columns:240px 1fr;
+  gap:1.5rem; align-items:center;
+  background:#fff; border-radius:1.5rem; overflow:hidden;
+  border:2px solid transparent; transition:.25s;
+  cursor:pointer;
+}
+.path-row:hover { border-color:var(--blue-mid); box-shadow:0 8px 32px rgba(30,58,138,.1); }
+.path-color-block {
+  padding:2rem; color:#fff; text-align:center; min-height:130px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.5rem;
+}
+.path-color-block.c-green  { background:linear-gradient(135deg,#22C55E,#16A34A); }
+.path-color-block.c-blue   { background:linear-gradient(135deg,#3B82F6,#1E3A8A); }
+.path-color-block.c-red    { background:linear-gradient(135deg,#EF4444,#B91C1C); }
+.path-color-block.c-purple { background:linear-gradient(135deg,#8B5CF6,#5B21B6); }
+.path-color-block.c-yellow { background:linear-gradient(135deg,#FACC15,#CA9C04); color:var(--dark); }
+.path-emoji-big { font-size:2.2rem; }
+.path-level-name { font-family:'Cairo',sans-serif; font-size:1.1rem; font-weight:900; }
+.path-years-badge {
+  background:rgba(255,255,255,.2); border-radius:100px;
+  padding:.15rem .7rem; font-size:.75rem; font-weight:700;
+}
+.path-info { padding:1.5rem 2rem; }
+.path-subtitle { font-size:.75rem; font-weight:800; letter-spacing:2px; color:var(--gray); text-transform:uppercase; margin-bottom:.4rem; }
+.path-title { font-family:'Cairo',sans-serif; font-size:1.2rem; font-weight:900; margin-bottom:.5rem; }
+.path-desc { font-size:.88rem; color:var(--gray); line-height:1.7; margin-bottom:1rem; }
+.path-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.path-tag {
+  font-size:.75rem; font-weight:700; padding:.25rem .75rem;
+  border-radius:100px; background:var(--blue-light); color:var(--blue);
+}
+
+/* ── BAC SECTION ── */
+.bac-wrap {
+  margin:0 5%; border-radius:2.5rem; overflow:hidden;
+  background:linear-gradient(135deg,#0D2467 0%,var(--blue) 100%);
+  position:relative;
+}
+.bac-wrap::after {
+  content:'BAC'; position:absolute; left:-30px; bottom:-40px;
+  font-family:'Cairo',sans-serif; font-size:14rem; font-weight:900;
+  color:rgba(255,255,255,.03); line-height:1; pointer-events:none;
+}
+.bac-inner { padding:4rem 5%; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.bac-content .section-tag { background:rgba(255,255,255,.12); color:var(--yellow); }
+.bac-content .section-title { color:#fff; }
+.bac-content .section-sub { color:rgba(255,255,255,.7); max-width:100%; }
+.bac-cards { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; margin-top:2rem; }
+.bac-card {
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
+  border-radius:1.2rem; padding:1.2rem; transition:.2s;
+}
+.bac-card:hover { background:rgba(255,255,255,.12); }
+.bac-card-icon { font-size:1.6rem; margin-bottom:.5rem; display:block; }
+.bac-card-title { font-weight:800; font-size:.9rem; color:#fff; }
+.bac-card-desc { font-size:.78rem; color:rgba(255,255,255,.55); margin-top:.2rem; }
+.bac-right { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:1.8rem; padding:2rem; }
+.bac-score-display { text-align:center; margin-bottom:1.5rem; }
+.bac-big-num { font-family:'Cairo',sans-serif; font-size:5.5rem; font-weight:900; color:var(--yellow); line-height:1; }
+.bac-num-label { font-size:.85rem; color:rgba(255,255,255,.55); margin-top:.3rem; }
+.skill-bars { display:flex; flex-direction:column; gap:1rem; }
+.skill-bar-item {}
+.skill-bar-label { display:flex; justify-content:space-between; margin-bottom:.4rem; }
+.skill-bar-label span { font-size:.82rem; color:rgba(255,255,255,.8); font-weight:600; }
+.skill-bar-label em { font-size:.82rem; color:var(--yellow); font-style:normal; font-weight:700; }
+.skill-track { height:8px; background:rgba(255,255,255,.1); border-radius:100px; overflow:hidden; }
+.skill-fill { height:100%; border-radius:100px; background:linear-gradient(90deg,var(--green),var(--yellow)); }
+
+/* ── HOW IT WORKS ── */
+.how-section { background:#fff; }
+.how-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.4rem; }
+.how-card {
+  background:var(--bg); border-radius:1.5rem; padding:2rem 1.8rem;
+  position:relative; transition:.25s; border:2px solid transparent;
+}
+.how-card:hover { border-color:var(--blue-mid); background:#fff; box-shadow:0 10px 36px rgba(30,58,138,.1); }
+.how-num {
+  font-family:'Cairo',sans-serif; font-size:4rem; font-weight:900;
+  color:rgba(30,58,138,.08); line-height:1;
+  position:absolute; top:1rem; left:1.4rem;
+}
+.how-icon-wrap {
+  width:52px; height:52px; border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5rem; margin-bottom:1rem;
+}
+.how-card:nth-child(1) .how-icon-wrap { background:#EFF4FF; }
+.how-card:nth-child(2) .how-icon-wrap { background:#FEF9C3; }
+.how-card:nth-child(3) .how-icon-wrap { background:#DCFCE7; }
+.how-card:nth-child(4) .how-icon-wrap { background:#FEE2E2; }
+.how-card:nth-child(5) .how-icon-wrap { background:#F3E8FF; }
+.how-card.result-card { background:var(--blue); border-color:var(--blue); }
+.how-card.result-card .how-num { color:rgba(255,255,255,.08); }
+.how-card.result-card .how-icon-wrap { background:rgba(255,255,255,.15); }
+.how-title { font-family:'Cairo',sans-serif; font-size:1.05rem; font-weight:900; margin-bottom:.5rem; }
+.how-card.result-card .how-title { color:#fff; }
+.how-desc { font-size:.87rem; color:var(--gray); line-height:1.75; }
+.how-card.result-card .how-desc { color:rgba(255,255,255,.75); }
+.result-word {
+  font-family:'Cairo',sans-serif; font-size:2.2rem; font-weight:900;
+  color:var(--yellow); margin-top:.8rem;
+}
+
+/* ── FOR PARENTS SECTION ── */
+.parents-section {
+  background:linear-gradient(135deg, #F0FDF4 0%, #F5F7FF 100%);
+  position:relative; overflow:hidden;
+}
+.parents-section::before {
+  content:''; position:absolute; top:0; right:0;
+  width:400px; height:400px; border-radius:50%;
+  background:radial-gradient(circle, rgba(34,197,94,.1) 0%, transparent 70%);
+}
+.parents-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.parents-features { display:flex; flex-direction:column; gap:1.2rem; margin-top:2rem; }
+.parent-feat {
+  display:flex; align-items:center; gap:1.2rem;
+  background:#fff; border-radius:1.2rem; padding:1.3rem 1.5rem;
+  box-shadow:0 2px 16px rgba(0,0,0,.05); transition:.2s;
+}
+.parent-feat:hover { transform:translateX(-4px); box-shadow:0 6px 24px rgba(0,0,0,.08); }
+.parent-feat-icon {
+  width:48px; height:48px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; flex-shrink:0;
+}
+.pfi-green { background:#DCFCE7; }
+.pfi-blue  { background:#EFF4FF; }
+.pfi-yellow{ background:#FEF9C3; }
+.pfi-red   { background:#FEE2E2; }
+.parent-feat-text strong { font-weight:800; font-size:.95rem; display:block; }
+.parent-feat-text p { font-size:.83rem; color:var(--gray); }
+.parents-quote {
+  background:#fff; border-radius:2rem; padding:2.5rem;
+  box-shadow:0 10px 40px rgba(0,0,0,.07); text-align:center;
+  position:relative;
+}
+.parents-quote::before {
+  content:'"'; font-family:'Cairo',sans-serif; font-size:8rem;
+  font-weight:900; color:var(--blue-light); line-height:.5;
+  position:absolute; top:1.5rem; right:2rem;
+}
+.quote-text { font-size:1.15rem; line-height:1.8; color:var(--dark); font-weight:600; margin-bottom:1.5rem; position:relative; z-index:1; }
+.quote-author { display:flex; align-items:center; justify-content:center; gap:.8rem; }
+.quote-avatar {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--blue-mid));
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:1rem; color:#fff; font-family:'Cairo',sans-serif;
+}
+.quote-name { font-weight:800; font-size:.9rem; }
+.quote-role { font-size:.78rem; color:var(--gray); }
+.parent-stats-mini { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem; }
+.pstat {
+  background:var(--bg); border-radius:1rem; padding:1rem; text-align:center;
+}
+.pstat-num { font-family:'Cairo',sans-serif; font-size:1.8rem; font-weight:900; color:var(--blue); }
+.pstat-label { font-size:.78rem; color:var(--gray); font-weight:600; }
+
+/* ── FEATURES ── */
+.features-section { background:var(--bg); }
+.features-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.2rem; }
+.feat-card {
+  background:#fff; border-radius:1.5rem; padding:1.8rem;
+  border:2px solid var(--card-border); transition:.25s;
+}
+.feat-card:hover { border-color:var(--blue-mid); transform:translateY(-5px); box-shadow:0 12px 36px rgba(30,58,138,.1); }
+.feat-icon-box {
+  width:56px; height:56px; border-radius:16px;
+  background:var(--blue-light); display:flex; align-items:center;
+  justify-content:center; font-size:1.6rem; margin-bottom:1.2rem;
+}
+.feat-title { font-family:'Cairo',sans-serif; font-weight:900; font-size:1rem; margin-bottom:.5rem; }
+.feat-desc { font-size:.87rem; color:var(--gray); line-height:1.75; }
+
+/* ── PRICING ── */
+.pricing-section { background:#fff; }
+.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.price-card {
+  background:var(--bg); border-radius:2rem; padding:2.2rem;
+  border:2px solid transparent; transition:.25s; position:relative;
+}
+.price-card:hover { transform:translateY(-5px); }
+.price-card.popular { background:#fff; border-color:var(--blue); box-shadow:0 12px 48px rgba(30,58,138,.15); }
+.pop-badge {
+  position:absolute; top:1.5rem; left:1.5rem;
+  background:var(--yellow); color:var(--dark);
+  font-size:.72rem; font-weight:800; letter-spacing:.5px;
+  border-radius:100px; padding:.3rem .8rem;
+}
+.price-plan { font-weight:800; font-size:.85rem; color:var(--gray); letter-spacing:1px; margin-bottom:.8rem; text-transform:uppercase; }
+.price-row { display:flex; align-items:baseline; gap:.3rem; margin-bottom:.2rem; }
+.price-amount { font-family:'Cairo',sans-serif; font-size:3.5rem; font-weight:900; color:var(--blue); line-height:1; }
+.price-curr { font-size:1.1rem; color:var(--blue); font-weight:700; }
+.price-period { font-size:.85rem; color:var(--gray); font-weight:600; margin-bottom:1.5rem; }
+.price-list { list-style:none; display:flex; flex-direction:column; gap:.65rem; margin-bottom:2rem; }
+.price-list li { font-size:.88rem; display:flex; align-items:flex-start; gap:.6rem; }
+.check { color:var(--green); font-weight:900; font-size:1rem; margin-top:.05rem; flex-shrink:0; }
+.price-btn {
+  width:100%; border-radius:100px; padding:.85rem;
+  font-family:'Tajawal',sans-serif; font-weight:700; font-size:.95rem;
+  cursor:pointer; transition:.2s; border:2px solid var(--blue);
+}
+.price-btn.filled { background:var(--blue); color:#fff; }
+.price-btn.outline { background:transparent; color:var(--blue); }
+.price-btn:hover { background:var(--blue-mid); color:#fff; border-color:var(--blue-mid); }
+
+/* ── TESTIMONIALS ── */
+.test-section { background:var(--blue-dark); padding:5rem 5%; }
+.test-section .section-tag { background:rgba(255,255,255,.1); color:var(--yellow); }
+.test-section .section-title { color:#fff; }
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; margin-top:3rem; }
+.test-card {
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+  border-radius:1.5rem; padding:1.8rem; transition:.2s;
+}
+.test-card:hover { background:rgba(255,255,255,.1); }
+.test-stars { color:var(--yellow); font-size:1rem; letter-spacing:2px; margin-bottom:.8rem; }
+.test-quote { font-size:.92rem; line-height:1.8; color:rgba(255,255,255,.85); margin-bottom:1.3rem; }
+.test-footer { display:flex; align-items:center; gap:.8rem; }
+.test-av {
+  width:42px; height:42px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:1rem; font-family:'Cairo',sans-serif;
+}
+.av-y { background:linear-gradient(135deg,var(--yellow),var(--yellow-dk)); color:var(--dark); }
+.av-g { background:linear-gradient(135deg,var(--green),var(--green-dk)); color:#fff; }
+.av-b { background:linear-gradient(135deg,var(--blue-mid),var(--blue)); color:#fff; }
+.test-name { font-weight:800; font-size:.9rem; color:#fff; }
+.test-city { font-size:.78rem; color:rgba(255,255,255,.45); }
+
+/* ── FAQ ── */
+.faq-section { background:var(--bg); }
+.faq-list { display:flex; flex-direction:column; gap:.8rem; max-width:780px; margin:0 auto; }
+.faq-item {
+  background:#fff; border-radius:1.2rem; overflow:hidden;
+  border:2px solid var(--card-border); transition:.2s;
+}
+.faq-item.open { border-color:var(--blue); }
+.faq-q {
+  padding:1.3rem 1.5rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:space-between;
+  font-weight:700; font-size:.95rem; gap:1rem; user-select:none;
+}
+.faq-arrow {
+  width:28px; height:28px; border-radius:50%;
+  background:var(--blue-light); color:var(--blue);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1rem; flex-shrink:0; transition:transform .3s;
+}
+.faq-item.open .faq-arrow { transform:rotate(180deg); background:var(--blue); color:#fff; }
+.faq-a {
+  max-height:0; overflow:hidden; transition:max-height .35s ease, padding .3s;
+  padding:0 1.5rem; font-size:.9rem; color:var(--gray); line-height:1.8;
+}
+.faq-item.open .faq-a { max-height:200px; padding:0 1.5rem 1.3rem; }
+
+/* ── CTA ── */
+.cta-section {
+  background:linear-gradient(135deg,var(--yellow) 0%,#F59E0B 100%);
+  padding:6rem 5%; text-align:center; position:relative; overflow:hidden;
+}
+.cta-section::before {
+  content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%);
+  width:600px; height:600px; border-radius:50%;
+  background:rgba(255,255,255,.1);
+}
+.cta-title {
+  font-family:'Cairo',sans-serif; font-weight:900;
+  font-size:clamp(2rem,5vw,3.5rem); color:var(--dark);
+  line-height:1.2; margin-bottom:1rem; position:relative;
+}
+.cta-sub { font-size:1.1rem; color:rgba(13,27,75,.65); margin-bottom:2.5rem; }
+.cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+.cta-btn-main {
+  background:var(--blue); color:#fff; border:none; border-radius:100px;
+  padding:1rem 2.5rem; font-family:'Tajawal',sans-serif; font-size:1.05rem; font-weight:700;
+  cursor:pointer; box-shadow:0 8px 32px rgba(30,58,138,.4);
+  transition:transform .2s, box-shadow .2s;
+}
+.cta-btn-main:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(30,58,138,.45); }
+.cta-btn-sec {
+  background:rgba(0,0,0,.08); color:var(--dark); border:none; border-radius:100px;
+  padding:1rem 2.5rem; font-family:'Tajawal',sans-serif; font-size:1.05rem; font-weight:700;
+  cursor:pointer; transition:.2s;
+}
+.cta-btn-sec:hover { background:rgba(0,0,0,.13); }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--dark); color:rgba(255,255,255,.6);
+  padding:4rem 5% 2rem; display:grid;
+  grid-template-columns:1.8fr 1fr 1fr 1fr; gap:2.5rem;
+}
+.footer-logo { font-family:'Cairo',sans-serif; font-weight:900; font-size:1.5rem; color:#fff; margin-bottom:.8rem; display:block; }
+.footer-logo .fq { color:var(--yellow); }
+.footer-desc { font-size:.87rem; line-height:1.75; margin-bottom:1.2rem; }
+.footer-social { display:flex; gap:.6rem; }
+.social-btn {
+  width:36px; height:36px; border-radius:10px;
+  background:rgba(255,255,255,.08); display:flex; align-items:center;
+  justify-content:center; font-size:1rem; transition:.2s; cursor:pointer;
+}
+.social-btn:hover { background:rgba(255,255,255,.16); }
+.footer-col h4 { color:#fff; font-weight:800; font-size:.95rem; margin-bottom:1.2rem; }
+.footer-col a { display:block; font-size:.87rem; color:rgba(255,255,255,.5); text-decoration:none; margin-bottom:.6rem; transition:.2s; }
+.footer-col a:hover { color:#fff; }
+.footer-bottom {
+  background:#06102B; padding:1.2rem 5%;
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:.5rem;
+  font-size:.82rem; color:rgba(255,255,255,.3);
+}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float {
+  position:fixed; bottom:2rem; left:2rem; z-index:200;
+  width:56px; height:56px; border-radius:50%;
+  background:#25D366; color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.6rem; box-shadow:0 6px 24px rgba(37,211,102,.4);
+  cursor:pointer; transition:transform .2s, box-shadow .2s;
+  text-decoration:none;
+  animation:waPulse 2.5s ease-in-out infinite;
+}
+.wa-float:hover { transform:scale(1.1); box-shadow:0 10px 36px rgba(37,211,102,.5); }
+
+/* ── MOBILE NAV DRAWER ── */
+.mobile-nav {
+  display:none; position:fixed; top:0; right:0; left:0; bottom:0;
+  background:rgba(13,27,75,.95); z-index:500; flex-direction:column;
+  align-items:center; justify-content:center; gap:2rem;
+}
+.mobile-nav.open { display:flex; }
+.mobile-nav a { color:#fff; font-size:1.4rem; font-weight:700; font-family:'Cairo',sans-serif; text-decoration:none; }
+.mobile-nav-close {
+  position:absolute; top:1.5rem; left:1.5rem;
+  background:none; border:none; color:#fff; font-size:2rem; cursor:pointer;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+@keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+@keyframes qWiggle {
+  0%,100%{transform:rotate(0) scale(1)} 50%{transform:rotate(-10deg) scale(1.1)}
+}
+@keyframes mcFloat1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes mcFloat2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+@keyframes shapeDrift { from{transform:translate(0,0)} to{transform:translate(-20px,-20px)} }
+@keyframes waPulse {
+  0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.4)}
+  50%{box-shadow:0 6px 36px rgba(37,211,102,.7)}
+}
+
+/* reveal */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity:1; transform:none; }
+.reveal-delay-1 { transition-delay:.1s; }
+.reveal-delay-2 { transition-delay:.2s; }
+.reveal-delay-3 { transition-delay:.3s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:1024px) {
+  .hero { grid-template-columns:1fr; }
+  .hero-visual { display:none; }
+  .bac-inner { grid-template-columns:1fr; }
+  .parents-grid { grid-template-columns:1fr; }
+  .path-row { grid-template-columns:180px 1fr; }
+  footer { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:768px) {
+  nav .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .path-row { grid-template-columns:1fr; }
+  .path-color-block { min-height:auto; padding:1.2rem; }
+  .how-grid { grid-template-columns:1fr 1fr; }
+  .features-grid { grid-template-columns:1fr 1fr; }
+  .pricing-grid { grid-template-columns:1fr; }
+  .test-grid { grid-template-columns:1fr; }
+  .stats-row { grid-template-columns:1fr 1fr; }
+  footer { grid-template-columns:1fr; }
+  .bac-cards { grid-template-columns:1fr; }
+  .parent-stats-mini { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:480px) {
+  .how-grid { grid-template-columns:1fr; }
+  .features-grid { grid-template-columns:1fr; }
+  .hero-btns { flex-direction:column; }
+  .bac-cards { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="#pain" onclick="closeMobileNav()">لماذا FHEMTNI؟</a>
+  <a href="#path" onclick="closeMobileNav()">المسارات التعليمية</a>
+  <a href="#bac" onclick="closeMobileNav()">الباكالوريا</a>
+  <a href="#parents" onclick="closeMobileNav()">لأولياء الأمور</a>
+  <a href="#pricing" onclick="closeMobileNav()">الأسعار</a>
+  <button class="nav-cta" style="font-size:1.1rem;padding:.8rem 2rem" onclick="closeMobileNav()">ابدأ مجاناً →</button>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">FHEMTNI<span class="q">?</span></a>
+  <ul class="nav-links">
+    <li><a href="#pain">المشكلة والحل</a></li>
+    <li><a href="#path">المسارات</a></li>
+    <li><a href="#bac">الباكالوريا</a></li>
+    <li><a href="#parents">للأولياء</a></li>
+    <li><a href="#pricing">الأسعار</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-cta">ابدأ مجاناً →</button>
+    <div class="hamburger" onclick="openMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="dot-grid"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🇹🇳 &nbsp;صُنع في تونس، لأبناء تونس</div>
+    <h1 class="hero-headline">
+      ابنك مش فاهم<br>
+      <span class="underline-wrap">إنجليزي</span><span class="line-accent">؟</span><br>
+      FHEMTNI يحل المشكلة.
+    </h1>
+    <p class="hero-sub">
+      المنصة التونسية الأولى التي تشرح الإنجليزية بطريقة واضحة ومبسطة — من الابتدائي إلى الباكالوريا إلى سوق العمل. بدون تعقيد، بدون لغة أكاديمية.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-primary">🚀 ابدأ التعلم مجاناً</button>
+      <button class="btn-ghost">▶ شاهد كيف يعمل</button>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-pill"><span>✅</span> مجاني للبداية</div>
+      <div class="trust-pill"><span>📱</span> يعمل على الهاتف</div>
+      <div class="trust-pill"><span>🎓</span> موافق للمنهج التونسي</div>
+      <div class="trust-pill"><span>👪</span> متابعة الأولياء</div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-wrap">
+      <div class="hero-main-card">
+        <div class="mini-card mc1">✅ نحو وقواعد</div>
+        <div class="mini-card mc2">💡 شرح مبسّط</div>
+        <div class="mini-card mc3">🎓 جاهز للباك</div>
+        <div class="mini-card mc4">💼 إنجليزي أعمال</div>
+        <div class="brand-display">FHEMTNI<span class="bq">?</span></div>
+        <span class="brand-tagline">الإنجليزية واضحة أخيراً</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS ROW -->
+<div class="stats-row reveal">
+  <div class="stat-box">
+    <span class="stat-number" data-target="50000">0</span>
+    <div class="stat-label">طالب تونسي</div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-number">5</span>
+    <div class="stat-label">مسارات تعليمية كاملة</div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-number" data-target="500">0</span>
+    <div class="stat-label">درس متوفر الآن</div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-number" data-target="97">0</span>
+    <div class="stat-label">% معدل رضا الأولياء</div>
+  </div>
+</div>
+
+<!-- PAIN SECTION -->
+<section class="pain-section" id="pain">
+  <div class="pain-grid">
+    <div class="reveal">
+      <div class="section-tag">⚡ المشكلة والحل</div>
+      <h2 class="section-title">نفهم المعاناة.<br>ولدينا الحل.</h2>
+      <p class="section-sub">كل عام، آلاف الطلاب التونسيين يفشلون في الإنجليزية — مش لأنهم أغبياء، بل لأن طريقة التدريس ما تناسبهمش.</p>
+      <div class="pain-list">
+        <div class="pain-item problem">
+          <div class="pain-icon">😟</div>
+          <div class="pain-text">
+            <strong>المشكلة: الشرح معقد ومحيّر</strong>
+            <p>المناهج التقليدية تستخدم مصطلحات أكاديمية ما يفهمها الطلاب.</p>
+          </div>
+        </div>
+        <div class="pain-item problem">
+          <div class="pain-icon">📚</div>
+          <div class="pain-text">
+            <strong>المشكلة: حفظ بدون فهم</strong>
+            <p>الطالب يحفظ للامتحان ثم ينسى كل شيء بعد أسبوع.</p>
+          </div>
+        </div>
+        <div class="pain-item problem">
+          <div class="pain-icon">💸</div>
+          <div class="pain-text">
+            <strong>المشكلة: الدروس الخصوصية غالية</strong>
+            <p>ليس كل عائلة تقدر تدفع مئات الدنانير كل شهر.</p>
+          </div>
+        </div>
+        <div class="pain-item solution">
+          <div class="pain-icon">✨</div>
+          <div class="pain-text">
+            <strong>الحل: FHEMTNI؟ — واضح، مبسط، بالأسلوب التونسي</strong>
+            <p>كل درس مبني ليفهمه الطالب من المرة الأولى — بدون ضغط وبدون تعقيد.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="pain-visual">
+        <h3 style="font-family:'Cairo',sans-serif;font-size:1.3rem;font-weight:900;margin-bottom:1.5rem;">رحلة الطالب مع FHEMTNI</h3>
+        <div class="journey-steps">
+          <div class="journey-step">
+            <div class="step-icon">😕</div>
+            <div>
+              <div class="step-label">اليوم الأول</div>
+              <div class="step-sub">"الإنجليزية مستحيل نفهمها"</div>
+            </div>
+          </div>
+          <div class="journey-arrow">↓</div>
+          <div class="journey-step">
+            <div class="step-icon">📖</div>
+            <div>
+              <div class="step-label">الأسبوع الأول</div>
+              <div class="step-sub">شرح واضح + أمثلة حقيقية</div>
+            </div>
+          </div>
+          <div class="journey-arrow">↓</div>
+          <div class="journey-step">
+            <div class="step-icon">💡</div>
+            <div>
+              <div class="step-label">الشهر الأول</div>
+              <div class="step-sub">ثقة في النفس + تحسن ملموس</div>
+            </div>
+          </div>
+          <div class="journey-arrow">↓</div>
+          <div class="journey-step active">
+            <div class="step-icon">🏆</div>
+            <div>
+              <div class="step-label">نهاية الفصل</div>
+              <div class="step-sub">"فهمتني؟" — نعم، أخيراً!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATH SECTION -->
+<section class="path-section" id="path">
+  <div class="section-header reveal">
+    <div class="section-tag">📚 المسارات التعليمية</div>
+    <h2 class="section-title">من الحرف الأول<br>إلى المقابلة الأخيرة.</h2>
+    <p class="section-sub">اختر مستواك وابدأ رحلتك — كل مسار مبني خصيصاً للمنهج التونسي.</p>
+  </div>
+  <div class="paths-container">
+    <div class="path-row reveal">
+      <div class="path-color-block c-green">
+        <div class="path-emoji-big">🟢</div>
+        <div class="path-level-name">الابتدائي</div>
+        <div class="path-years-badge">6 سنوات</div>
+      </div>
+      <div class="path-info">
+        <div class="path-subtitle">ابدأ من الصفر</div>
+        <div class="path-title">المرحلة الابتدائية — الأساس الصحيح</div>
+        <div class="path-desc">الأبجدية والنطق والكلمات الأساسية — العائلة، الألوان، المدرسة. ألعاب تعليمية وصور وأصوات تجعل الإنجليزية طبيعية من الصغر.</div>
+        <div class="path-tags">
+          <span class="path-tag">الأبجدية</span>
+          <span class="path-tag">النطق</span>
+          <span class="path-tag">الكلمات الأساسية</span>
+          <span class="path-tag">ألعاب تعليمية</span>
+          <span class="path-tag">3 ثلاثيات / سنة</span>
+        </div>
+      </div>
+    </div>
+    <div class="path-row reveal">
+      <div class="path-color-block c-blue">
+        <div class="path-emoji-big">🔵</div>
+        <div class="path-level-name">الإعدادي</div>
+        <div class="path-years-badge">3 سنوات</div>
+      </div>
+      <div class="path-info">
+        <div class="path-subtitle">ابنِ الأساس</div>
+        <div class="path-title">المرحلة الإعدادية — من الفهم للتواصل</div>
+        <div class="path-desc">الأزمنة الأساسية، قواعد النحو، فهم المقروء، والكتابة القصيرة. تحوّل الفهم السلبي إلى تواصل حقيقي باللغة الإنجليزية.</div>
+        <div class="path-tags">
+          <span class="path-tag">الأزمنة</span>
+          <span class="path-tag">النحو</span>
+          <span class="path-tag">فهم المقروء</span>
+          <span class="path-tag">التعبير الكتابي</span>
+          <span class="path-tag">3 ثلاثيات / سنة</span>
+        </div>
+      </div>
+    </div>
+    <div class="path-row reveal" id="bac">
+      <div class="path-color-block c-red">
+        <div class="path-emoji-big">🔴</div>
+        <div class="path-level-name">الثانوي</div>
+        <div class="path-years-badge">4 سنوات</div>
+      </div>
+      <div class="path-info">
+        <div class="path-subtitle">تفوّق في الامتحانات</div>
+        <div class="path-title">المرحلة الثانوية — النجاح في الباكالوريا</div>
+        <div class="path-desc">نحو متقدم، كتابة المقال بأنواعه (رأي، حجة، نقاش)، وفهم المقروء والمسموع بصيغة الباك. الهدف: النجاح بثقة وليس بالصدفة.</div>
+        <div class="path-tags">
+          <span class="path-tag">نحو متقدم</span>
+          <span class="path-tag">كتابة المقال</span>
+          <span class="path-tag">امتحانات سابقة</span>
+          <span class="path-tag">نماذج إجابات</span>
+          <span class="path-tag">3 ثلاثيات / سنة</span>
+        </div>
+      </div>
+    </div>
+    <div class="path-row reveal">
+      <div class="path-color-block c-purple">
+        <div class="path-emoji-big">🎓</div>
+        <div class="path-level-name">الجامعي</div>
+        <div class="path-years-badge">3 سنوات</div>
+      </div>
+      <div class="path-info">
+        <div class="path-subtitle">مسار المتخصص</div>
+        <div class="path-title">الجامعة — الإنجليزية على مستوى أعلى</div>
+        <div class="path-desc">الكتابة الأكاديمية، اللسانيات، الأدب الإنجليزي والأمريكي، البحث العلمي، وكتابة الأطروحة. لتصبح خريجاً حقيقياً وليس مجرد طالب.</div>
+        <div class="path-tags">
+          <span class="path-tag">الكتابة الأكاديمية</span>
+          <span class="path-tag">اللسانيات</span>
+          <span class="path-tag">الأدب</span>
+          <span class="path-tag">البحث العلمي</span>
+          <span class="path-tag">2 فصول / سنة</span>
+        </div>
+      </div>
+    </div>
+    <div class="path-row reveal">
+      <div class="path-color-block c-yellow">
+        <div class="path-emoji-big">💼</div>
+        <div class="path-level-name">الأعمال</div>
+        <div class="path-years-badge">وتيرة حرة</div>
+      </div>
+      <div class="path-info">
+        <div class="path-subtitle">إنجليزي للحياة والعمل</div>
+        <div class="path-title">إنجليزية الأعمال — حوّل اللغة إلى دخل</div>
+        <div class="path-desc">CV والسيرة الذاتية، رسائل التقديم، المقابلات، البريد الإلكتروني المهني، التفاوض والعروض التقديمية. إنجليزي يفتح أبواب الفرص.</div>
+        <div class="path-tags">
+          <span class="path-tag">السيرة الذاتية</span>
+          <span class="path-tag">المقابلات</span>
+          <span class="path-tag">بريد مهني</span>
+          <span class="path-tag">التفاوض</span>
+          <span class="path-tag">مسارَين متاحَين</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAC SPOTLIGHT -->
+<div style="padding:0 0 5rem">
+<div class="bac-wrap reveal">
+  <div class="bac-inner">
+    <div class="bac-content">
+      <div class="section-tag">🎯 تحضير الباكالوريا</div>
+      <h2 class="section-title">انجح في الباك.<br>مش بس تنجو منه.</h2>
+      <p class="section-sub">أشمل تحضير للباكالوريا في تونس — امتحانات حقيقية، نماذج إجابات، وهياكل مقالات تنجح فعلاً.</p>
+      <div class="bac-cards">
+        <div class="bac-card">
+          <span class="bac-card-icon">📄</span>
+          <div class="bac-card-title">امتحانات سابقة</div>
+          <div class="bac-card-desc">أرشيف كامل لامتحانات الباك الحقيقية</div>
+        </div>
+        <div class="bac-card">
+          <span class="bac-card-icon">✍️</span>
+          <div class="bac-card-title">نماذج إجابات</div>
+          <div class="bac-card-desc">مقالات نموذجية مشروحة بالتفصيل</div>
+        </div>
+        <div class="bac-card">
+          <span class="bac-card-icon">📐</span>
+          <div class="bac-card-title">هياكل المقالات</div>
+          <div class="bac-card-desc">رأي — حجة — نقاش — جاهزة للحفظ</div>
+        </div>
+        <div class="bac-card">
+          <span class="bac-card-icon">🎯</span>
+          <div class="bac-card-title">نصائح التصحيح</div>
+          <div class="bac-card-desc">تجنّب أكثر الأخطاء شيوعاً في الباك</div>
+        </div>
+      </div>
+    </div>
+    <div class="bac-right">
+      <div class="bac-score-display">
+        <div class="bac-big-num">+3.5</div>
+        <div class="bac-num-label">نقاط في المتوسط يكتسبها الطلاب بعد شهرين</div>
+      </div>
+      <div class="skill-bars">
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>فهم المقروء</span><em>92%</em></div>
+          <div class="skill-track"><div class="skill-fill" style="width:92%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>كتابة المقال</span><em>86%</em></div>
+          <div class="skill-track"><div class="skill-fill" style="width:86%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>النحو والمفردات</span><em>94%</em></div>
+          <div class="skill-track"><div class="skill-fill" style="width:94%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>فهم المسموع</span><em>78%</em></div>
+          <div class="skill-track"><div class="skill-fill" style="width:78%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-header reveal">
+    <div class="section-tag">⚡ طريقة FHEMTNI</div>
+    <h2 class="section-title">كل درس مبني<br>ليبقى في ذهنك.</h2>
+    <p class="section-sub">خمس خطوات بسيطة في كل درس تضمن أن الطالب يفهم من المرة الأولى ولا ينسى.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-card reveal">
+      <div class="how-num">01</div>
+      <div class="how-icon-wrap">💡</div>
+      <div class="how-title">شرح بسيط ومباشر</div>
+      <div class="how-desc">بدون مصطلحات أكاديمية معقدة. شرح واضح بالأسلوب التونسي — كأن المعلم يجلس بجانبك.</div>
+    </div>
+    <div class="how-card reveal reveal-delay-1">
+      <div class="how-num">02</div>
+      <div class="how-icon-wrap">🌍</div>
+      <div class="how-title">أمثلة من الحياة الحقيقية</div>
+      <div class="how-desc">كل مفهوم يُشرح بأمثلة يتعرف عليها الطالب التونسي من يومه العادي.</div>
+    </div>
+    <div class="how-card reveal reveal-delay-2">
+      <div class="how-num">03</div>
+      <div class="how-icon-wrap">⚠️</div>
+      <div class="how-title">الأخطاء الشائعة</div>
+      <div class="how-desc">نكشف لك الأخطاء التي يقع فيها الجميع — حتى لا تكررها في الامتحان.</div>
+    </div>
+    <div class="how-card reveal">
+      <div class="how-num">04</div>
+      <div class="how-icon-wrap">🧩</div>
+      <div class="how-title">اختبار سريع</div>
+      <div class="how-desc">سؤال سريع يثبّت المعلومة في الذاكرة قبل الانتقال للدرس التالي.</div>
+    </div>
+    <div class="how-card reveal reveal-delay-1">
+      <div class="how-num">05</div>
+      <div class="how-icon-wrap">✏️</div>
+      <div class="how-title">تمرين تطبيقي</div>
+      <div class="how-desc">طبّق ما تعلمته في تمرين كتابي أو شفهي حقيقي — الممارسة هي الأساس.</div>
+    </div>
+    <div class="how-card result-card reveal reveal-delay-2">
+      <div class="how-num">✓</div>
+      <div class="how-icon-wrap">🏆</div>
+      <div class="how-title">النتيجة</div>
+      <div class="how-desc">بعد كل درس يقول الطالب:</div>
+      <div class="result-word">"فهمتني؟"</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR PARENTS -->
+<section class="parents-section" id="parents">
+  <div class="parents-grid">
+    <div class="reveal">
+      <div class="section-tag">👪 لأولياء الأمور</div>
+      <h2 class="section-title">أنتم تثقون بنا.<br>نحن نستحق هذه الثقة.</h2>
+      <p class="section-sub">نفهم أن وليّ الأمر هو أهم شخص في هذه المعادلة. FHEMTNI مبني ليطمئنكم على أبناءكم.</p>
+      <div class="parents-features">
+        <div class="parent-feat">
+          <div class="parent-feat-icon pfi-green">📊</div>
+          <div class="parent-feat-text">
+            <strong>متابعة التقدم في الوقت الحقيقي</strong>
+            <p>اعرف بالضبط أين وصل ابنك وماذا تعلم هذا الأسبوع.</p>
+          </div>
+        </div>
+        <div class="parent-feat">
+          <div class="parent-feat-icon pfi-blue">🔒</div>
+          <div class="parent-feat-text">
+            <strong>محتوى آمن ومناسب للعمر</strong>
+            <p>كل المحتوى مراجعة ومناسب تماماً لكل مرحلة عمرية.</p>
+          </div>
+        </div>
+        <div class="parent-feat">
+          <div class="parent-feat-icon pfi-yellow">📱</div>
+          <div class="parent-feat-text">
+            <strong>يعمل على هاتف ابنك مباشرة</strong>
+            <p>لا حاجة لكمبيوتر أو معدات خاصة — فقط الهاتف.</p>
+          </div>
+        </div>
+        <div class="parent-feat">
+          <div class="parent-feat-icon pfi-red">💰</div>
+          <div class="parent-feat-text">
+            <strong>أرخص من الدروس الخصوصية بكثير</strong>
+            <p>احصل على محتوى أفضل بعشر تكلفة الدروس الخاصة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="parents-quote">
+        <div class="quote-text">
+          "ابني كان رافض الإنجليزية تماماً. بعد شهر على FHEMTNI بدأ يحل تمارينه لوحده وارتفع معدله من 8 إلى 13. أنا كأمّ كنت في أزمة، هذا التطبيق أنقذنا."
+        </div>
+        <div class="quote-author">
+          <div class="quote-avatar">ف</div>
+          <div>
+            <div class="quote-name">فاطمة الزهراء بن علي</div>
+            <div class="quote-role">أمّ طالب في السنة التاسعة — صفاقس</div>
+          </div>
+        </div>
+      </div>
+      <div class="parent-stats-mini" style="margin-top:1rem">
+        <div class="pstat">
+          <div class="pstat-num">8.5×</div>
+          <div class="pstat-label">أرخص من الدرس الخصوصي</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">97%</div>
+          <div class="pstat-label">رضا أولياء الأمور</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">3 أسابيع</div>
+          <div class="pstat-label">متوسط وقت التحسن</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">24/7</div>
+          <div class="pstat-label">متاح في أي وقت</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="section-header reveal">
+    <div class="section-tag">✨ مميزات المنصة</div>
+    <h2 class="section-title">كل ما تحتاجه.<br>في مكان واحد.</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feat-card reveal">
+      <div class="feat-icon-box">📱</div>
+      <div class="feat-title">تصميم للهاتف أولاً</div>
+      <div class="feat-desc">تعلّم من هاتفك في أي مكان وأي وقت. لا حاجة لكمبيوتر — مثالي للطلاب التونسيين في كل مكان.</div>
+    </div>
+    <div class="feat-card reveal reveal-delay-1">
+      <div class="feat-icon-box">🎧</div>
+      <div class="feat-title">النطق الصوتي الصحيح</div>
+      <div class="feat-desc">اسمع كل كلمة وجملة بصوت واضح. أتقن النطق والتنغيم من اليوم الأول.</div>
+    </div>
+    <div class="feat-card reveal reveal-delay-2">
+      <div class="feat-icon-box">📊</div>
+      <div class="feat-title">متابعة التقدم</div>
+      <div class="feat-desc">اعرف بالضبط أين أنت في مسارك. احتفل بكل إنجاز واعرف ماذا تدرس التالي.</div>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon-box">📥</div>
+      <div class="feat-title">تحميل ملفات PDF</div>
+      <div class="feat-desc">حمّل ملخصات الدروس وهياكل المقالات ومراجع النحو للدراسة بدون إنترنت.</div>
+    </div>
+    <div class="feat-card reveal reveal-delay-1">
+      <div class="feat-icon-box">🏅</div>
+      <div class="feat-title">شهادة FHEMTNI</div>
+      <div class="feat-desc">أتمم مساراً واحصل على شهادة موثّقة تثبت مستواك في الإنجليزية. قريباً.</div>
+    </div>
+    <div class="feat-card reveal reveal-delay-2">
+      <div class="feat-icon-box">🔄</div>
+      <div class="feat-title">تحديثات مستمرة</div>
+      <div class="feat-desc">دروس جديدة وامتحانات سابقة محدّثة كل فصل دراسي. المحتوى يتطور معك.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-header center reveal">
+    <div class="section-tag">💰 الأسعار</div>
+    <h2 class="section-title">ابدأ مجاناً. تقدّم بسرعة.</h2>
+    <p class="section-sub">اختر الخطة التي تناسبك — بدون رسوم خفية، بدون التزام.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="price-plan">المجاني</div>
+      <div class="price-row">
+        <span class="price-amount">0</span>
+        <span class="price-curr">TND</span>
+      </div>
+      <div class="price-period">مجاني للأبد</div>
+      <ul class="price-list">
+        <li><span class="check">✓</span> الوصول لمستويَين</li>
+        <li><span class="check">✓</span> 30 درساً شهرياً</li>
+        <li><span class="check">✓</span> الاختبارات السريعة</li>
+        <li><span class="check">✓</span> متابعة التقدم الأساسية</li>
+      </ul>
+      <button class="price-btn outline">ابدأ مجاناً</button>
+    </div>
+    <div class="price-card popular reveal reveal-delay-1">
+      <div class="pop-badge">⭐ الأكثر شيوعاً</div>
+      <div class="price-plan">البريميوم</div>
+      <div class="price-row">
+        <span class="price-amount">19</span>
+        <span class="price-curr">TND</span>
+      </div>
+      <div class="price-period">في الشهر</div>
+      <ul class="price-list">
+        <li><span class="check">✓</span> كل المسارات الخمسة</li>
+        <li><span class="check">✓</span> دروس غير محدودة</li>
+        <li><span class="check">✓</span> حزمة الباكالوريا الكاملة</li>
+        <li><span class="check">✓</span> تحميل ملفات PDF</li>
+        <li><span class="check">✓</span> النطق الصوتي</li>
+        <li><span class="check">✓</span> متابعة ولي الأمر</li>
+        <li><span class="check">✓</span> الشهادة (قريباً)</li>
+      </ul>
+      <button class="price-btn filled">اشترك الآن</button>
+    </div>
+    <div class="price-card reveal reveal-delay-2">
+      <div class="price-plan">الأعمال</div>
+      <div class="price-row">
+        <span class="price-amount">39</span>
+        <span class="price-curr">TND</span>
+      </div>
+      <div class="price-period">في الشهر</div>
+      <ul class="price-list">
+        <li><span class="check">✓</span> كل ما في البريميوم</li>
+        <li><span class="check">✓</span> مسار إنجليزية الأعمال</li>
+        <li><span class="check">✓</span> أدوات CV والسيرة الذاتية</li>
+        <li><span class="check">✓</span> تحضير المقابلات</li>
+        <li><span class="check">✓</span> دعم ذو أولوية</li>
+      </ul>
+      <button class="price-btn outline">اشترك في الأعمال</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="test-section">
+  <div class="section-header reveal">
+    <div class="section-tag">💬 قصص النجاح</div>
+    <h2 class="section-title">هم قالوا "فهمتني؟"</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"كنت راسب في الإنجليزية كل دورة. بعد شهرين على FHEMTNI نلت 14 في الباك التجريبي. هياكل المقالات هي السر."</div>
+      <div class="test-footer">
+        <div class="test-av av-y">أ</div>
+        <div>
+          <div class="test-name">أحمد بن صالح</div>
+          <div class="test-city">طالب باكالوريا — صفاقس</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal reveal-delay-1">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"أخيراً منصة تشرح الإنجليزية ببساطة. أنا في الليسانس سنة ثانية وتحسّنت كتابتي بشكل كامل. ما توقعت هكا النتيجة."</div>
+      <div class="test-footer">
+        <div class="test-av av-g">س</div>
+        <div>
+          <div class="test-name">سنا الكريمي</div>
+          <div class="test-city">طالبة ليسانس — تونس العاصمة</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal reveal-delay-2">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">"تعلمت إنجليزية الأعمال وتقدمت لوظيفة في شركة أجنبية. نجحت في المقابلة بالإنجليزية. FHEMTNI غيّر مسار حياتي."</div>
+      <div class="test-footer">
+        <div class="test-av av-b">م</div>
+        <div>
+          <div class="test-name">محمد التليلي</div>
+          <div class="test-city">مهندس معلوماتية — سوسة</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-header center reveal">
+    <div class="section-tag">❓ أسئلة شائعة</div>
+    <h2 class="section-title">عندك سؤال؟<br>عندنا الجواب.</h2>
+  </div>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>هل المحتوى موافق للمنهج التونسي؟</span>
+        <div class="faq-arrow">▼</div>
+      </div>
+      <div class="faq-a">نعم تماماً. كل المحتوى مبني على المناهج الرسمية التونسية لكل المستويات من الابتدائي إلى الثانوي، مع مراعاة متطلبات الباكالوريا بدقة.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>هل يمكن لولي الأمر متابعة تقدم ابنه؟</span>
+        <div class="faq-arrow">▼</div>
+      </div>
+      <div class="faq-a">بالتأكيد. الاشتراك البريميوم يتضمن لوحة متابعة خاصة بولي الأمر تُظهر الدروس المنجزة، نتائج الاختبارات، وتقرير أسبوعي مفصّل.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>كيف يختلف FHEMTNI عن يوتيوب أو المواقع الأخرى؟</span>
+        <div class="faq-arrow">▼</div>
+      </div>
+      <div class="faq-a">FHEMTNI مبني خصيصاً للطالب التونسي — مع أمثلة من بيئته، ومتطلبات امتحاناته، وأسلوب شرح يناسبه. مش مجرد محتوى عشوائي بل منهج متكامل.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>هل يمكن الاستخدام بدون إنترنت؟</span>
+        <div class="faq-arrow">▼</div>
+      </div>
+      <div class="faq-a">يمكن تحميل ملفات PDF والمراجع للدراسة أوفلاين. الدروس التفاعلية تحتاج إنترنت، لكننا نعمل على إضافة خاصية الاستخدام الكامل بدون إنترنت قريباً.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>ما الفرق بين خطة الباكالوريا وباقي الخطط؟</span>
+        <div class="faq-arrow">▼</div>
+      </div>
+      <div class="faq-a">خطة البريميوم تشمل حزمة الباكالوريا الكاملة: كل الامتحانات السابقة، النماذج المصحّحة، هياكل المقالات، وجلسات مراجعة مخصصة للبكالوريا.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>هل يمكن الإلغاء في أي وقت؟</span>
+        <div class="faq-arrow">▼</div>
+      </div>
+      <div class="faq-a">نعم بالكامل. لا عقود، لا التزامات. يمكنك إلغاء اشتراكك في أي وقت من إعدادات حسابك بنقرة واحدة.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title reveal">مستعد تقول<br>"فهمتني؟"</h2>
+  <p class="cta-sub reveal">انضم لآلاف الطلاب التونسيين الذين فهموا الإنجليزية أخيراً.</p>
+  <div class="cta-buttons reveal">
+    <button class="cta-btn-main">🚀 ابدأ مجاناً الآن — بدون بطاقة بنكية</button>
+    <button class="cta-btn-sec">📲 حمّل التطبيق</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <span class="footer-logo">FHEMTNI<span class="fq">?</span></span>
+    <p class="footer-desc">الإنجليزية واضحة لكل طالب تونسي.<br>من الحروف الأولى إلى الوظيفة الأخيرة — FHEMTNI معك في كل خطوة.</p>
+    <div class="footer-social">
+      <div class="social-btn">📘</div>
+      <div class="social-btn">📸</div>
+      <div class="social-btn">▶️</div>
+      <div class="social-btn">💬</div>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>المسارات</h4>
+    <a href="#">المرحلة الابتدائية</a>
+    <a href="#">المرحلة الإعدادية</a>
+    <a href="#">المرحلة الثانوية</a>
+    <a href="#">الجامعة</a>
+    <a href="#">إنجليزية الأعمال</a>
+  </div>
+  <div class="footer-col">
+    <h4>الموارد</h4>
+    <a href="#">امتحانات الباك السابقة</a>
+    <a href="#">هياكل المقالات</a>
+    <a href="#">مراجع النحو</a>
+    <a href="#">تحميل PDF</a>
+  </div>
+  <div class="footer-col">
+    <h4>المنصة</h4>
+    <a href="#">الأسعار</a>
+    <a href="#">من نحن</a>
+    <a href="#">المدونة</a>
+    <a href="#">تواصل معنا</a>
+    <a href="#">سياسة الخصوصية</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 FHEMTNI? — جميع الحقوق محفوظة.</span>
+  <span>🇹🇳 صُنع في تونس بكل فخر</span>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/21600000000" target="_blank" title="تواصل معنا على واتساب">💬</a>
+
+<script>
+// ── Progress bar ──
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('progress-bar');
+  const doc = document.documentElement;
+  const percent = doc.scrollTop / (doc.scrollHeight - doc.clientHeight);
+  el.style.transform = `scaleX(${percent})`;
+});
+
+// ── Scroll reveal ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+
+// ── Counter animation ──
+function animateCounter(el, target, duration = 1800) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { el.textContent = target.toLocaleString('ar'); clearInterval(timer); return; }
+    el.textContent = Math.floor(start).toLocaleString('ar');
+  }, 16);
+}
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.target.dataset.target) {
+      animateCounter(e.target, parseInt(e.target.dataset.target));
+      counterObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
+
+// ── FAQ accordion ──
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── Mobile nav ──
+function openMobileNav()  { document.getElementById('mobileNav').classList.add('open'); }
+function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+
+// ── Smooth stagger for path rows ──
+document.querySelectorAll('.path-row').forEach((row, i) => {
+  row.style.transitionDelay = `${i * 0.08}s`;
+});
+</script>
+</body>
+</html>
